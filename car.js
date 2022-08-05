@@ -11,11 +11,13 @@ class Car {
         this.friction = 0.05;
         this.angle = 0;
 
+        this.sensor = new Sensor(this);
         this.controls = new Controls();
     }
 
     update() {
-        this._move()
+        this._move();
+        this.sensor.update();
     }
 
     _move() {
@@ -81,5 +83,8 @@ class Car {
         ctx.fill();
 
         ctx.restore();
+
+        // Отрисовка сенсоров
+        this.sensor.draw(ctx);
     }
 }
